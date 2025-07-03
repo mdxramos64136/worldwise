@@ -1,0 +1,18 @@
+.nav {
+  background-color: orangered;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*setting global css in the module.css:*/
+:global(.test) {
+  background-color: burlywood;
+}
+
+.nav :global(.active) {
+  background-color: chartreuse;
+}
