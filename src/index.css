@@ -50,6 +50,7 @@ textarea {
   transition: all 0.2s;
 }
 
+/*por quê estas var globais estão com sintaxe diferente?*/
 input:focus {
   outline: none;
   background-color: #fff;
