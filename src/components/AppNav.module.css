@@ -22,7 +22,8 @@
   border-radius: 5px;
 }
 
-/* CSS Modules feature */
+/* CSS Modules feature - Styling the active class 
+auto generated/ provided by React*/
 .nav a:global(.active) {
   background-color: var(--color-dark--0);
 }
