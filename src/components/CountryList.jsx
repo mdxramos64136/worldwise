@@ -1,3 +1,6 @@
+/** IMPORTANT: If you use the Google Chrome or the Edge browser, you might need
+    to install the extension 'Country Flag Fixer' to see the flags properly */
+
 import styles from "./CityList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message";
@@ -14,6 +17,12 @@ function CountryList({ cities, isLoading }) {
   }
 
   // city/cur = current city
+  // const countries = cities.reduce((arr, city) => {
+  //   if (!arr.map((el) => el.country).includes(city.country)) {
+  //     return [...arr, { country: city.country, emoji: city.emoji }];
+  //   } else return arr;
+  // }, []);
+
   const countries = cities.reduce((arr, city) => {
     if (!arr.map((el) => el.country).includes(city.country)) {
       return [...arr, { country: city.country, emoji: city.emoji }];
