@@ -5,8 +5,11 @@ import styles from "./CityList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message";
 import CountryItem from "./CountryItem";
+import { useCities } from "../contexts/CityContext";
 
-function CountryList({ cities, isLoading }) {
+function CountryList() {
+  const { cities, isLoading } = useCities();
+
   if (isLoading) return <Spinner />;
 
   // if there is not items...
