@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useCities } from "../contexts/CityContext";
 import { useEffect } from "react";
 import Spinner from "./Spinner";
-import Button from "./Button";
 import BackButton from "./BackButton";
 
 const formatDate = (date) =>
@@ -15,13 +14,13 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
+//////////////////////////////////////////////////////////////////////////
+
 function City() {
   const { id } = useParams(); // to fetch the data. It comes from the URL
-  console.log(id);
   const { getCity, currentCity, isLoading } = useCities();
+  //console.log(`Este é o id ${id}`);
 
-  //Por que foi necessário mais um useEffect aqui se já tem
-  // um em CityContext pra pegar os dados da API?
   useEffect(
     function () {
       getCity(id);
@@ -65,7 +64,9 @@ function City() {
         </a>
       </div>
 
-      <BackButton />
+      <div>
+        <BackButton />
+      </div>
     </div>
   );
 }
