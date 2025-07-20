@@ -15,6 +15,11 @@ function CityItem({ city }) {
   const { cityName, emoji, date, id, position } = city;
   const { currentCity } = useCities();
 
+  console.log(
+    "Link para cidade:",
+    `/app/cities/${id}?lat=${position.lat}&lng=${position.lng}`
+  );
+
   return (
     <li>
       <Link
