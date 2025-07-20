@@ -10,13 +10,19 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useCities } from "../contexts/CityContext";
+import { useGeolocation } from "../hooks/useGeolocation";
+import Button from "./Button";
 
 function Map() {
   //Global state - get the cities out of the CityContext using
   // custom hook defined there (useCities())
   const { cities } = useCities();
   const [searchParams] = useSearchParams();
-
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   // accessing the data:
@@ -33,8 +39,21 @@ function Map() {
     [mapLat, mapLng]
   );
 
+  //new effect to cync with my current position:
+  useEffect(
+    function () {
+      if (geolocationPosition)
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+    },
+    [geolocationPosition]
+  );
+
   return (
     <div className={styles.mapContainer}>
+      {/* type = class? */}
+      <Button type="position" onClick={getPosition}>
+        {isLoadingPosition ? "Loading" : "Get My Position"}
+      </Button>
       <MapContainer
         className={styles.map}
         center={mapPosition}
@@ -74,7 +93,7 @@ function DetectClick() {
       console.log(e);
 
       //passing data through URL/ query
-      navigate(`form?lat=${e.latlng.lat}&lng${e.latlng.lat}`);
+      navigate(`form?lat=${e.latlng.lat}&lng${e.latlng.lng}`);
     },
   });
 }
