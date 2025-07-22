@@ -11,20 +11,23 @@ import {
 } from "react-leaflet";
 import { useCities } from "../contexts/CityContext";
 import { useGeolocation } from "../hooks/useGeolocation";
-import { useUrlPosition } from "../hooks/useUrlPosition";
 import Button from "./Button";
 
 function Map() {
   //Global state - get the cities out of the CityContext using
   // custom hook defined there (useCities())
   const { cities } = useCities();
+  const [searchParams] = useSearchParams();
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
   const [mapPosition, setMapPosition] = useState([40, 0]);
-  const [mapLat, mapLng] = useUrlPosition();
+
+  // accessing the data:
+  const mapLat = Number(searchParams.get("lat"));
+  const mapLng = Number(searchParams.get("lng"));
 
   // sync mapPosition with mapLat n mapLng so that when we click on Back btn
   // the pin will keep positionen on the last city. So whenever that values

@@ -27,13 +27,41 @@ function CitiesProvider({ children }) {
     }
     fetchCities();
   }, []);
-
+  //////////////
   async function getCity(id) {
     try {
       setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
       setCurrentCity(data);
+    } catch {
+      alert("There was an error loading data!");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  /////////
+  /**
+   * Sendding data to API
+   * fetch: Since it's gonna be POST request, we need to specifie the options object:
+   * body property: the data that we will send
+   * The id will be auto generated.
+   * It's necessary to add the new city to the cities state. Keep the app state
+   * with the state from UI (keep UI state in sync with remote state.).
+   */
+  async function createCity(newCity) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: "POST",
+        body: JSON.stringify(newCity), // converting to string
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+
+      setCities((cities) => [...cities, data]);
     } catch {
       alert("There was an error loading data!");
     } finally {
@@ -48,6 +76,7 @@ function CitiesProvider({ children }) {
         isLoading,
         currentCity,
         getCity,
+        createCity,
       }}>
       {children}
     </CitiesContext.Provider>
