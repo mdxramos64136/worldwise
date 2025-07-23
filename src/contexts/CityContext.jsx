@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:8000";
 
 const CitiesContext = createContext();
 
-/////////////////////////////////////////////////////////////////////////
+/***************************************************************/
 function CitiesProvider({ children }) {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +27,7 @@ function CitiesProvider({ children }) {
     }
     fetchCities();
   }, []);
-  //////////////
+  /***************************************************************/
   async function getCity(id) {
     try {
       setIsLoading(true);
@@ -41,11 +41,8 @@ function CitiesProvider({ children }) {
     }
   }
 
-  /////////
+  /***************************************************************/
   /**
-   * Sendding data to API
-   * fetch: Since it's gonna be POST request, we need to specifie the options object:
-   * body property: the data that we will send
    * The id will be auto generated.
    * It's necessary to add the new city to the cities state. Keep the app state
    * with the state from UI (keep UI state in sync with remote state.).
@@ -63,11 +60,28 @@ function CitiesProvider({ children }) {
 
       setCities((cities) => [...cities, data]);
     } catch {
-      alert("There was an error loading data!");
+      alert("There was an error creating data!");
     } finally {
       setIsLoading(false);
     }
   }
+  /***************************************************************/
+
+  async function deleteCity(id) {
+    try {
+      setIsLoading(true);
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch {
+      alert("There was an error deleting city data!");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  /***************************************************************/
 
   return (
     <CitiesContext.Provider
@@ -77,6 +91,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
+        deleteCity,
       }}>
       {children}
     </CitiesContext.Provider>

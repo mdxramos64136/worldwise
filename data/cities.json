@@ -35,66 +35,6 @@
         "lng": 13.376933665713324
       },
       "id": "98443197"
-    },
-    {
-      "id": "c6b0",
-      "cityName": "Vall d'Alba",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2025-07-22T22:39:28.785Z",
-      "notes": "success",
-      "position": {
-        "lat": 40.15705340372185,
-        "lng": 0
-      }
-    },
-    {
-      "id": "8b92",
-      "cityName": "England",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2025-07-22T22:47:07.697Z",
-      "notes": "England",
-      "position": {
-        "lat": 54.1219900980866,
-        "lng": 0
-      }
-    },
-    {
-      "id": "3ae9",
-      "cityName": "Sorbets",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2025-07-22T22:54:27.910Z",
-      "notes": "E ai?",
-      "position": {
-        "lat": 43.7297563477143,
-        "lng": 0
-      }
-    },
-    {
-      "id": "8528",
-      "cityName": "Zaouiet Kounta",
-      "country": "Algeria",
-      "emoji": "🇩🇿",
-      "date": "2025-07-22T22:56:06.948Z",
-      "notes": "hfghgf",
-      "position": {
-        "lat": 27.288396315431207,
-        "lng": 0
-      }
-    },
-    {
-      "id": "3b35",
-      "cityName": "Pusiga",
-      "country": "Ghana",
-      "emoji": "🇬🇭",
-      "date": "2025-07-22T22:58:47.552Z",
-      "notes": "dsdsdsdsd",
-      "position": {
-        "lat": 11.071782110088892,
-        "lng": 0
-      }
     }
   ]
 }

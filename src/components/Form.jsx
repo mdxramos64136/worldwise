@@ -21,7 +21,7 @@ export function convertToEmoji(countryCode) {
 }
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
-
+/***************************************************************/
 function Form() {
   const [lat, lng] = useUrlPosition();
   const { createCity, isLoading } = useCities();
@@ -35,9 +35,11 @@ function Form() {
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [emoji, setEmoji] = useState(""); //converte Country Name to flag
   const [geocodingError, setGeocodingError] = useState("");
-
+  /***************************************************************/
   useEffect(
     function () {
+      // If there is no lat or lng the rest of the code won't be executed.
+      // It means the no API request will be made, any data will be fetch, etc...
       if (!lat && !lng) return;
       async function fetchCityData() {
         try {
@@ -66,7 +68,7 @@ function Form() {
     },
     [lat, lng]
   );
-
+  /***************************************************************/
   async function handleSubmit(e) {
     e.preventDefault(); // avoid hard reload
 
@@ -87,6 +89,7 @@ function Form() {
     navigate("/app");
   }
 
+  /***************************************************************/
   if (isLoadingGeocoding) return <Spinner />;
   if (!lat && !lng)
     return <Message message="Start by clickng somewhere in the map!" />;
