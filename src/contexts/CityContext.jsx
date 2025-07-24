@@ -77,9 +77,9 @@ function CitiesProvider({ children }) {
   }, []);
   /***************************************************************/
   async function getCity(id) {
-    // It avoid calling API again if the city we want to load is already
-    // the current city. Note that the id is comming from the URL,
-    // then we  need to convert to Number.
+    // It avoids calling the API again if the city we want to load is already
+    // the current city. Note that the ID is coming from the URL,
+    // so we need to convert it to a number.
     if (Number(id) === currentCity.id) return;
     dispatch({ type: "loading" });
     try {
@@ -96,9 +96,9 @@ function CitiesProvider({ children }) {
 
   /***************************************************************/
   /**
-   * The id will be auto generated.
-   * It's necessary to add the new city to the cities state. Keep the app state
-   * with the state from UI (keep UI state in sync with remote state.).
+   * The ID will be auto-generated.
+   * It's necessary to add the new city to the `cities` state to keep the app state
+   * in sync with the UI state (i.e., keep the UI state consistent with the remote state).
    */
   async function createCity(newCity) {
     dispatch({ type: "loading" });
