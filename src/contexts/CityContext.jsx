@@ -1,5 +1,11 @@
 /*eslint-disable react-refresh/only-export-components */
-import { createContext, useEffect, useContext, useReducer } from "react";
+import {
+  createContext,
+  useEffect,
+  useContext,
+  useReducer,
+  useCallback,
+} from "react";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -76,24 +82,26 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
   /***************************************************************/
-  async function getCity(id) {
-    // It avoids calling the API again if the city we want to load is already
-    // the current city. Note that the ID is coming from the URL,
-    // so we need to convert it to a number.
-    if (Number(id) === currentCity.id) return;
-    dispatch({ type: "loading" });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was a error loading the city...",
-      });
-    }
-  }
-
+  const getCity = useCallback(
+    async function getCity(id) {
+      // It avoids calling the API again if the city we want to load is already
+      // the current city. Note that the ID is coming from the URL,
+      // so we need to convert it to a number.
+      if (Number(id) === currentCity.id) return;
+      dispatch({ type: "loading" });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: "city/loaded", payload: data });
+      } catch {
+        dispatch({
+          type: "rejected",
+          payload: "There was a error loading the city...",
+        });
+      }
+    },
+    [currentCity.id]
+  );
   /***************************************************************/
   /**
    * The ID will be auto-generated.

@@ -25,7 +25,7 @@ function City() {
     function () {
       getCity(id);
     },
-    [id]
+    [id, getCity]
   );
 
   /*Important: Hook ALWAYS need to be called in the same order*/
